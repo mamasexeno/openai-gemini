@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
 
-addEventListener("fetch", (event) => {
-  event.respondWith((async ({ request }) => {
+export default {
+  async fetch (request) {
     if (request.method === "OPTIONS") {
       return handleOPTIONS();
     }
@@ -25,8 +25,8 @@ addEventListener("fetch", (event) => {
       return new Response(err, { status: 400 });
     }
     return handleRequest(json, apiKey);
-  })(event));
-});
+  }
+};
 
 const handleOPTIONS = async () => {
   return new Response(null, {
